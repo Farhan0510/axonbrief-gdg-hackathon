@@ -4,7 +4,7 @@
 MediBrief Swarm is a multi-agent digital employee built with Google ADK and Gemini. It safely researches healthcare AI topics, structures findings through a research framework tool, and produces a concise executive brief for the user.
 
 ## Functional Diagram
-![Functional Diagram](app/functional-diagram.png)
+![Functional Diagram](app/functional-diagram-1.png)
 
 ```mermaid
 flowchart TD
