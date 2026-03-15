@@ -1,5 +1,68 @@
+# =========================
+# Environment variables
+# =========================
 .env
+.env.*
+*.env
+
+# =========================
+# Python cache
+# =========================
 __pycache__/
 *.pyc
-.venv/
+*.pyo
+*.pyd
+*.py[cod]
+
+# =========================
+# Virtual environments
+# =========================
 venv/
+env/
+.venv/
+
+# =========================
+# OS files
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Logs
+# =========================
+*.log
+
+# =========================
+# IDE files
+# =========================
+.vscode/
+.idea/
+
+# =========================
+# Build / distribution
+# =========================
+build/
+dist/
+*.egg-info/
+
+# =========================
+# Python testing cache
+# =========================
+.pytest_cache/
+
+# =========================
+# Jupyter
+# =========================
+.ipynb_checkpoints/
+
+# =========================
+# Node (if any UI tools added)
+# =========================
+node_modules/
+
+# =========================
+# Secrets / credentials
+# =========================
+credentials.json
+service_account.json
+
