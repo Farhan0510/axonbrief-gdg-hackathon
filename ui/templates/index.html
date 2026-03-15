@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AxonBrief</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="main-container">
+        <div class="card">
+
+            <div class="badge">Healthcare AI Research Assistant</div>
+
+            <p class="subtitle top-text">
+                AxonBrief uses a Manager, Researcher, and Summarizer agent swarm to generate safe healthcare AI research briefs.
+            </p>
+
+            <h1>AxonBrief</h1>
+
+            <p class="subtitle">
+                AI Healthcare Research Assistant powered by a multi-agent swarm
+            </p>
+
+            <form method="post" id="queryForm">
+                <div class="search-box">
+                    <input
+                        type="text"
+                        name="query"
+                        placeholder="Ask about AI in healthcare..."
+                        value="{{ query if query else '' }}"
+                        required
+                    />
+                    <button type="submit" id="researchBtn">Research</button>
+                </div>
+            </form>
+
+            <div class="suggestions">
+                <span class="suggestions-label">Try examples:</span>
+                <div class="suggestion-list">
+                    <button type="button" class="suggestion-chip" data-query="AI in healthcare">AI in healthcare</button>
+                    <button type="button" class="suggestion-chip" data-query="AI in radiology">AI in radiology</button>
+                    <button type="button" class="suggestion-chip" data-query="Ethical risks of healthcare AI">Ethical risks of healthcare AI</button>
+                </div>
+            </div>
+
+            <div class="agent-pipeline" id="agentPipeline">
+                <div class="pipeline-label">Agent workflow</div>
+                <div class="pipeline-steps">
+                    <div class="pipeline-step" id="step-manager">Manager</div>
+                    <div class="pipeline-arrow">→</div>
+                    <div class="pipeline-step" id="step-researcher">Researcher</div>
+                    <div class="pipeline-arrow">→</div>
+                    <div class="pipeline-step" id="step-summarizer">Summarizer</div>
+                </div>
+            </div>
+
+            <div class="status-panel">
+    <div class="status-card">
+        <span class="status-label">System</span>
+        <span class="status-value online">Online</span>
+    </div>
+    <div class="status-card">
+        <span class="status-label">Guardrails</span>
+        <span class="status-value active">Active</span>
+    </div>
+    <div class="status-card">
+        <span class="status-label">Research Mode</span>
+        <span class="status-value">{{ mode if mode else 'Standby' }}</span>
+    </div>
+    <div class="status-card">
+        <span class="status-label">Agent Swarm</span>
+        <span class="status-value ready">Ready</span>
+    </div>
+</div>
+
+            {% if error %}
+            <div class="error-box">
+                <strong>Unable to complete request.</strong><br>
+                {{ error }}
+            </div>
+            {% endif %}
+
+            {% if response and mode %}
+            <p class="mode-badge">Mode: {{ mode }}</p>
+            {% endif %}
+
+            {% if response %}
+            <div class="result-box">
+                <div class="result-header">
+                    <h2>Executive Brief</h2>
+                </div>
+
+                <div class="agent-badges">
+    <span class="agent-badge">Manager Agent</span>
+    <span class="agent-badge">Researcher Agent</span>
+    <span class="agent-badge">Summarizer Agent</span>
+</div>
+
+
+                <pre>{{ response }}</pre>
+            </div>
+            {% endif %}
+
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById("queryForm");
+        const btn = document.getElementById("researchBtn");
+        const input = document.querySelector('input[name="query"]');
+        const chips = document.querySelectorAll(".suggestion-chip");
+
+        const stepManager = document.getElementById("step-manager");
+        const stepResearcher = document.getElementById("step-researcher");
+        const stepSummarizer = document.getElementById("step-summarizer");
+
+        chips.forEach(chip => {
+            chip.addEventListener("click", () => {
+                if (input) {
+                    input.value = chip.dataset.query;
+                    input.focus();
+                }
+            });
+        });
+
+        if (form && btn) {
+            form.addEventListener("submit", () => {
+                btn.textContent = "Thinking...";
+                btn.disabled = true;
+                btn.style.opacity = "0.7";
+
+                if (stepManager && stepResearcher && stepSummarizer) {
+                    stepManager.classList.remove("active");
+                    stepResearcher.classList.remove("active");
+                    stepSummarizer.classList.remove("active");
+
+                    stepManager.classList.add("active");
+
+                    setTimeout(() => {
+                        stepResearcher.classList.add("active");
+                    }, 700);
+
+                    setTimeout(() => {
+                        stepSummarizer.classList.add("active");
+                    }, 1400);
+                }
+            });
+        }
+    </script>
+</body>
+</html>

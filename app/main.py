@@ -1,5 +1,7 @@
 import asyncio
 import os
+import logging
+logging.getLogger("google").setLevel(logging.ERROR)
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -9,9 +11,9 @@ from google.adk.sessions import InMemorySessionService
 from google.genai import types
 from agents.manager import manager_agent
 
-APP_NAME = "research_swarm_app"
+APP_NAME = "axonbrief_app"
 USER_ID = "farhan"
-SESSION_ID = "session_001"
+SESSION_ID = "axonbrief_session_001"
 
 
 async def main():

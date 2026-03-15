@@ -1,2 +1,7 @@
 google-adk
 python-dotenv
+duckduckgo-search
+fastapi
+uvicorn
+jinja2
+python-multipart

@@ -1,0 +1,39 @@
+Healthcare AI Reference Notes
+
+Definition
+AI in healthcare refers to the use of machine learning, natural language processing, computer vision, and related technologies to support medical and healthcare tasks.
+
+Common Applications
+- Medical imaging analysis
+- Clinical decision support
+- Drug discovery
+- Predictive analytics for hospital operations
+- Administrative workflow automation
+- Remote patient monitoring
+- Personalized medicine
+
+Benefits
+- Faster analysis of large datasets
+- Improved diagnostic support
+- Better efficiency in hospital operations
+- Reduced repetitive administrative work
+- Potential for earlier disease detection
+
+Risks and Limitations
+- Bias in training data
+- Privacy and security concerns
+- Limited explainability in some models
+- Regulatory and ethical issues
+- Risk of overreliance on automated systems
+
+Ethics and Privacy
+- Patient data must be protected
+- AI outputs should be reviewed by humans
+- AI should assist, not replace, clinical judgment
+- Systems must avoid harmful or discriminatory outcomes
+
+Real-World Examples
+- AI-assisted radiology
+- Hospital chatbot triage assistants
+- AI-based drug screening systems
+- Predictive models for patient deterioration

@@ -1,3 +1,9 @@
+from pathlib import Path
+from duckduckgo_search import DDGS
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+DATA_FILE = BASE_DIR / "data" / "healthcare_ai_notes.txt"
+
 def guardrail_check(user_query: str) -> dict:
     """
     Check whether the user's query is safe for this demo.
@@ -77,4 +83,65 @@ def research_framework(topic: str) -> dict:
             "clear conclusion",
         ],
         "audience": "general audience",
+    }
+
+
+def local_reference_lookup(query: str) -> dict:
+    """
+    Look up curated internal healthcare AI notes from a local file.
+
+    Args:
+        query: The user topic or question.
+
+    Returns:
+        A dictionary with the query and the relevant local notes.
+    """
+    file_path = DATA_FILE
+
+    if not file_path.exists():
+        return {
+            "status": "error",
+            "topic": query,
+            "notes": "Local reference file not found."
+        }
+
+    content = file_path.read_text(encoding="utf-8")
+
+    return {
+        "status": "ok",
+        "topic": query,
+        "notes": content
+    }
+
+def web_search_tool(query: str) -> dict:
+    """
+    Perform a simple web search using DuckDuckGo.
+
+    Returns top search results with title and snippet.
+    """
+
+    results = []
+
+    try:
+        with DDGS() as ddgs:
+            search_results = ddgs.text(query, max_results=5)
+
+            for r in search_results:
+                results.append({
+                    "title": r.get("title"),
+                    "snippet": r.get("body"),
+                    "url": r.get("href")
+                })
+
+    except Exception as e:
+        return {
+            "status": "error",
+            "message": str(e),
+            "results": []
+        }
+
+    return {
+        "status": "ok",
+        "query": query,
+        "results": results
     }
