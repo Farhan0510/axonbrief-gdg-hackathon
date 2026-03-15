@@ -49,11 +49,11 @@ The project highlights how agent-based AI systems can support **safe, structured
 - **Demo-Safe Mode**  
   The system automatically falls back to a demo-safe response if Gemini API quotas are exceeded.
 
-
 ---
-## Example System Outputs
 
-### Normal Research Query
+# Example System Outputs
+
+## Normal Research Query
 
 ![Normal Query](screenshots/normal-query.png)
 
@@ -63,17 +63,19 @@ The agent swarm performs structured research using:
 - web search
 - research framework tools
 
-The Manager Agent coordinates the Researcher and Summarizer agents to produce the final executive brief.
+The **Manager Agent coordinates the Researcher and Summarizer agents** to produce the final executive brief.
 
 ---
 
-### Guardrail Safety Example
+## Guardrail Safety Example
 
 ![Guardrail](screenshots/guardrail.png)
 
 If a user asks for personal medical advice, the guardrail tool blocks the request and returns a safe response instead.
 
 This ensures the system provides **educational information only**, not clinical recommendations.
+
+---
 
 # System Architecture
 

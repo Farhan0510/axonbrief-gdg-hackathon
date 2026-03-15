@@ -1,6 +1,7 @@
 import asyncio
 import os
 import logging
+
 logging.getLogger("google").setLevel(logging.ERROR)
 
 from dotenv import load_dotenv
@@ -17,8 +18,11 @@ SESSION_ID = "axonbrief_session_001"
 
 
 async def main():
-    if not os.getenv("GOOGLE_API_KEY"):
-        raise ValueError("GOOGLE_API_KEY not found. Put it in .env before running.")
+    if not os.getenv("GOOGLE_CLOUD_PROJECT"):
+        raise ValueError("GOOGLE_CLOUD_PROJECT not found in .env")
+
+    if not os.getenv("GOOGLE_CLOUD_LOCATION"):
+        raise ValueError("GOOGLE_CLOUD_LOCATION not found in .env")
 
     session_service = InMemorySessionService()
 

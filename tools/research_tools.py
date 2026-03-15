@@ -12,16 +12,29 @@ def guardrail_check(user_query: str) -> dict:
     Returns:
         dict: status, reason, and safe_response fields.
     """
-    q = user_query.lower()
+    q = user_query.lower().strip()
 
     restricted_patterns = [
         "diagnose me",
         "what disease do i have",
+        "what illness do i have",
         "prescribe",
         "dosage",
         "medical advice for me",
         "treatment for me personally",
         "my symptoms mean",
+        "what medicine should i take",
+        "what drug should i take",
+        "can you diagnose",
+        "do i have",
+        "i have chest pain",
+        "i have fever",
+        "i have cough",
+        "i have headache",
+        "i feel dizzy",
+        "what should i do for my symptoms",
+        "how do i treat my illness",
+        "what treatment do i need",
     ]
 
     for pattern in restricted_patterns:
